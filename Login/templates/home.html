@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Home</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; }
+    .navbar { background: #007BFF; padding: 10px; color: white; display: flex; align-items: center; }
+    .profile-icon { width: 40px; height: 40px; border-radius: 50%; background: white; color: #007BFF;
+      display: flex; justify-content: center; align-items: center; font-weight: bold; cursor: pointer; }
+    .profile-box { display: none; position: absolute; top: 60px; left: 20px; background: white;
+      padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 6px; }
+    button { padding: 8px 12px; background: #007BFF; border: none; color: white;
+      border-radius: 6px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="profile-icon" onclick="toggleProfile()">👤</div>
+    <h2 style="margin-left: 15px;">Welcome, {{ user[0] }}</h2>
+  </div>
+
+  <div class="profile-box" id="profileBox">
+    <h3>Your Profile</h3>
+    <form method="POST">
+      <label>Username:</label>
+      <input type="text" value="{{ user[0] }}" disabled>
+      
+      <label>Age:</label>
+      <input type="number" name="age" value="{{ user[1] if user[1] else '' }}">
+      
+      <label>Weight (kg):</label>
+      <input type="number" name="weight" value="{{ user[2] if user[2] else '' }}">
+      
+      <label>Height (cm):</label>
+      <input type="number" name="height" value="{{ user[3] if user[3] else '' }}">
+      
+      <button type="submit">Save</button>
+    </form>
+  </div>
+
+  <script>
+    function toggleProfile() {
+      const box = document.getElementById("profileBox");
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
+</html>
